@@ -35,16 +35,16 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http
-              containerPort: 8082
+              containerPort: 8547
               protocol: TCP
-          # livenessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 8082
-          # readinessProbe:
-          #   httpGet:
-          #     path: /
-          #     port: 8082
+          livenessProbe:
+            httpGet:
+              path: /
+              port: 8547
+          readinessProbe:
+            httpGet:
+              path: /
+              port: 8547
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
       {{- with .Values.nodeSelector }}
